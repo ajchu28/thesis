@@ -1,0 +1,26 @@
+{
+  "name": "thesis",
+  "version": "1.0.0",
+  "description": "Created for University of Chicago Media Arts and Design Thesis 2023",
+  "main": "postcss.config.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajchu28/thesis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajchu28/thesis/issues"
+  },
+  "homepage": "https://github.com/ajchu28/thesis#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "vite": "^4.0.4"
+  }
+}
