@@ -6,3 +6,5 @@ How can physical and virtual spaces combine to better visualize spatial data? In
 ### Dev
 1. ```npm install```
 2. ```npm run dev```
+
+```npx tailwindcss -i ./css/main.css -o ./dist/output.css --watch``` to rebuild CSS
