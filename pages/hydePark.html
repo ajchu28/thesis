@@ -30,13 +30,10 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a href="../index.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Chicago</a>
+              <a href="../index.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ride Share Prices in Chicago</a>
             </li>
             <li>
-              <a href="/pages/cityTwo.html" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">City Two</a>
-            </li>
-            <li>
-              <a href="/pages/cityThree.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">City Three</a>
+              <a href="/pages/hydePark.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Case Study: Hyde Park</a>
             </li>
           </ul>
         </div>
@@ -44,17 +41,17 @@
     </nav>
 
     <div class="container mx-auto">
-      <div id='map3' style="height: 85vh;"></div>
+      <div id='map2' style="height: 85vh;"></div>
     </div>
 
     <script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiYWpjaHUyOCIsImEiOiJja3o2M3MzMWswd200MnZwNGdieTNlaHRjIn0.BePZiTybP8rLoo6yQKon_w';
 
       const map = new mapboxgl.Map({
-        container: 'map3', // container ID
+        container: 'map2', // container ID
         style: 'mapbox://styles/mapbox/streets-v12', // style URL
-        center: [-122.446747, 37.733795], // starting position [lng, lat]
-        zoom: 10, // starting zoom
+        center: [-119.814972, 39.530895], // starting position [lng, lat]
+        zoom: 12, // starting zoom
       });
     </script>
   </body>
