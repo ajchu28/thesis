@@ -44,15 +44,144 @@
       <div id='map' style="height: 85vh;"></div>
     </div>
 
+    <script src="scripts/addRideShareLayers.js"></script>
+
     <script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiYWpjaHUyOCIsImEiOiJja3o2M3MzMWswd200MnZwNGdieTNlaHRjIn0.BePZiTybP8rLoo6yQKon_w';
 
       const map = new mapboxgl.Map({
         container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        style: 'mapbox://styles/ajchu28/cld4z0xwb002f01nwyiecuxm4', // style URL
         center: [-87.623177, 41.881832], // starting position [lng, lat]
-        zoom: 12, // starting zoom
+        zoom: 10, // starting zoom
       });
+
+      map.on('load', () => {
+
+        const layers = map.getStyle().layers;
+          // Find the index of the first symbol layer in the map style.
+          let firstSymbolId;
+
+        for (const layer of layers) {
+          if (layer.type === 'symbol') {
+            console.log(layer.id);
+            firstSymbolId = layer.id; 
+            break;
+          }
+        }
+
+        map.addSource('neighborhoods', {
+          type: 'vector',
+          url: 'mapbox://ajchu28.38hlra0j'
+        });
+
+        map.addSource('countries', {
+          type: 'vector',
+          url: 'mapbox://mapbox.country-boundaries-v1'
+        });
+
+        const matchExpression = ['match', ['get', 'area_num_1']];
+        var _0am0 = [{"pickup_community_area":"1","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8723501558"}
+,{"pickup_community_area":"2","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8576976771"}
+,{"pickup_community_area":"3","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.088803655"}
+,{"pickup_community_area":"4","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.918464336"}
+,{"pickup_community_area":"5","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.057236842"}
+,{"pickup_community_area":"6","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.311329029"}
+,{"pickup_community_area":"7","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.356487462"}
+,{"pickup_community_area":"8","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.576353097"}
+,{"pickup_community_area":"9","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.112143147"}
+,{"pickup_community_area":"10","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.040666297"}
+,{"pickup_community_area":"12","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9981812594"}
+,{"pickup_community_area":"11","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9685893284"}
+,{"pickup_community_area":"13","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.817673012"}
+,{"pickup_community_area":"14","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8712921145"}
+,{"pickup_community_area":"15","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9232505111"}
+,{"pickup_community_area":"16","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9719825281"}
+,{"pickup_community_area":"17","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.873477753"}
+,{"pickup_community_area":"18","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8760651239"}
+,{"pickup_community_area":"19","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8635775926"}
+,{"pickup_community_area":"20","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8988017528"}
+,{"pickup_community_area":"21","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.049174704"}
+,{"pickup_community_area":"22","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.210792844"}
+,{"pickup_community_area":"23","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.923226539"}
+,{"pickup_community_area":"24","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.431291336"}
+,{"pickup_community_area":"25","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9232213035"}
+,{"pickup_community_area":"26","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.037899543"}
+,{"pickup_community_area":"27","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.165131635"}
+,{"pickup_community_area":"28","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.690364802"}
+,{"pickup_community_area":"29","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.057104333"}
+,{"pickup_community_area":"30","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.015360351"}
+,{"pickup_community_area":"31","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.306658514"}
+,{"pickup_community_area":"32","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.626198749"}
+,{"pickup_community_area":"33","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.589151829"}
+,{"pickup_community_area":"34","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.33143668"}
+,{"pickup_community_area":"35","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.155564931"}
+,{"pickup_community_area":"36","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.035883513"}
+,{"pickup_community_area":"37","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.167701751"}
+,{"pickup_community_area":"38","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.006891761"}
+,{"pickup_community_area":"39","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.041142695"}
+,{"pickup_community_area":"40","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.016815635"}
+,{"pickup_community_area":"41","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.47483462"}
+,{"pickup_community_area":"42","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.083209044"}
+,{"pickup_community_area":"43","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8502741018"}
+,{"pickup_community_area":"44","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9669365066"}
+,{"pickup_community_area":"45","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9050373471"}
+,{"pickup_community_area":"46","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8449613533"}
+,{"pickup_community_area":"47","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8977314417"}
+,{"pickup_community_area":"48","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8853102558"}
+,{"pickup_community_area":"49","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9427366459"}
+,{"pickup_community_area":"50","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.917018555"}
+,{"pickup_community_area":"51","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9198918181"}
+,{"pickup_community_area":"52","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9268356113"}
+,{"pickup_community_area":"53","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8824916606"}
+,{"pickup_community_area":"54","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.884744925"}
+,{"pickup_community_area":"55","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9146056098"}
+,{"pickup_community_area":"56","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.429995871"}
+,{"pickup_community_area":"57","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9897193085"}
+,{"pickup_community_area":"58","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.003238218"}
+,{"pickup_community_area":"59","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.022046351"}
+,{"pickup_community_area":"60","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.131302168"}
+,{"pickup_community_area":"61","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9709377305"}
+,{"pickup_community_area":"62","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9673063707"}
+,{"pickup_community_area":"63","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9464835366"}
+,{"pickup_community_area":"64","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.030269576"}
+,{"pickup_community_area":"65","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9085699074"}
+,{"pickup_community_area":"66","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8529958722"}
+,{"pickup_community_area":"67","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.8958800003"}
+,{"pickup_community_area":"68","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9881712841"}
+,{"pickup_community_area":"69","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9965027127"}
+,{"pickup_community_area":"70","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.832865885"}
+,{"pickup_community_area":"71","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9100539805"}
+,{"pickup_community_area":"72","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.071485409"}
+,{"pickup_community_area":"73","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.9387601371"}
+,{"pickup_community_area":"74","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.177209479"}
+,{"pickup_community_area":"75","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.002908124"}
+,{"pickup_community_area":"76","hour_of_day":"0","min_of_day":"0","cost_per_min":"1.809656807"}
+,{"pickup_community_area":"77","hour_of_day":"0","min_of_day":"0","cost_per_min":"0.942682177"}];
+
+        for (const row of _0am0) {
+          const green = row['cost_per_min'] * 125;
+          const color = `rgb(0, ${green}, 0)`;
+        
+          matchExpression.push(row['pickup_community_area'], color);
+        }
+
+        matchExpression.push('rgba(0, 0, 0, 0)');
+
+        map.addLayer(
+          {
+            'id': '0am0-join',
+            'type': 'fill',
+            'source': 'neighborhoods',
+            'source-layer': 'Boundaries_-_Community_Areas_-buz6at',
+            'paint': {
+              'fill-color': matchExpression,   
+              'fill-opacity': 0.5,
+            }
+          }
+        );
+      });
+
     </script>
   </body>
 </html>
