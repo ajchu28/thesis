@@ -25,13 +25,73 @@ allLayers = [
 'twentythreepm0.json', 'twentythreepm15.json', 'twentythreepm30.json', 'twentythreepm45.json'
 ]
 
-for (let i = 0; i < 96; i++) {
-  var name = allLayers[i].split(".")[0];
-  fetch("./data/"+allLayers[i])
-  .then(response => {
-    return response.json();
-  })
-  .then(name => console.log(name));
+async function makeLayers(input) {
+  let length = input.length;
+  for (let i = 0; i < length; i++) {
+
+    let name = input[i].split(".")[0];
+    let response = await fetch("./data/"+input[i]);
+    let data = await response.json();
+    
+    const matchExpression = ['match', ['get', 'area_num_1']];
+    const heights = ['match', ['get', 'area_num_1']];
+
+    for (const row of data) {
+      const green = row['cost_per_min'] * 125;
+      const color = `rgb(0, ${green}, 0)`;
+    
+      matchExpression.push(row['pickup_community_area'], color);
+    }
+
+    matchExpression.push('rgba(0, 0, 0, 0)');
+
+    map.addLayer(
+      {
+        'id': name,
+        'type': 'fill',
+        'source': 'neighborhoods',
+        'source-layer': 'Boundaries_-_Community_Areas_-buz6at',
+        'layout': {
+          'visibility': 'none'
+        },
+        'paint': {
+          'fill-color': matchExpression,
+          'fill-opacity': 1,
+        }
+      }
+    );
+
+    map.moveLayer(
+      name,
+      'placeholder'
+    );
+  }
 }
 
-console.log(twentypm0);
+map.on('load', () => {
+
+  // const layers = map.getStyle().layers;
+  // // Find the index of the first symbol layer in the map style.
+  // let firstSymbolId;
+
+  // for (const layer of layers) {
+  //   if (layer.type === 'symbol') {
+  //     console.log(layer.id);
+  //     firstSymbolId = layer.id; 
+  //     break;
+  //   }
+  // }
+
+  // Neighborhood boundaries layer
+  map.addSource('neighborhoods', {
+    type: 'vector',
+    url: 'mapbox://ajchu28.38hlra0j'
+  });
+
+  makeLayers(allLayers)
+  
+});
+
+map.on('idle', () => {
+  map.setLayoutProperty('twelvepm0', 'visibility', 'visible');
+})
