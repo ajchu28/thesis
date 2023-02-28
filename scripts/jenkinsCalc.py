@@ -1,3 +1,6 @@
+import jenkspy
+import json
+
 allLayers = [
 'zeroam0.json', 'zeroam15.json', 'zeroam30.json', 'zeroam45.json',
 'oneam0.json', 'oneam15.json', 'oneam30.json', 'oneam45.json',
@@ -24,70 +27,14 @@ allLayers = [
 'twentytwopm0.json', 'twentytwopm15.json', 'twentytwopm30.json', 'twentytwopm45.json',
 'twentythreepm0.json', 'twentythreepm15.json', 'twentythreepm30.json', 'twentythreepm45.json'
 ]
+costArray = []
 
-test = ["twelvepm0.json"]
-
-// To recalculate, run jenkinsCalc.py — update allLayers if necessary
-breaks = [0.6063146196, 0.817689276, 0.9497102819, 1.114741225, 1.366572812, 1.995743373]
-choroplethColors = ["rgb(255,255,204)", "rgb(199,233,180)", "rgb(127,205,187)", "rgb(65,182,196)", "rgb(44,127,184)", "rgb(37,52,148)"]
-
-async function makeLayers(input) {
-
-  for (let i = 0; i < input.length; i++) {
-
-    let name = input[i].split(".")[0];
-    let response = await fetch("./data/"+input[i]);
-    let data = await response.json();
-    
-    const matchExpression = ['match', ['get', 'area_num_1']];
-
-    for (const row of data) {
-      const matchVal = row['cost_per_min'];
-      
-      var closestBreak = breaks.reduce(function(prev, curr) {
-        return (Math.abs(curr - matchVal) < Math.abs(prev - matchVal) ? curr : prev);
-      }); 
-    
-      matchExpression.push(row['pickup_community_area'], choroplethColors[breaks.indexOf(closestBreak)]);
-    }
-
-    matchExpression.push('rgba(0, 0, 0, 0)');
-
-    map.addLayer(
-      {
-        'id': name,
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'Boundaries_-_Community_Areas_-buz6at',
-        'layout': {
-          'visibility': 'none'
-        },
-        'paint': {
-          'fill-color': matchExpression,
-          'fill-opacity': 0.9,
-        }
-      }
-    );
-
-    map.moveLayer(
-      name,
-      'placeholder'
-    );
-  }
-}
-
-map.on('load', () => {
-
-  // Neighborhood boundaries layer
-  map.addSource('neighborhoods', {
-    type: 'vector',
-    url: 'mapbox://ajchu28.38hlra0j'
-  });
-
-  makeLayers(allLayers)
+for filename in allLayers:
+  with open('./data/'+filename, 'r') as f:
+    # Read some data from a JSON file
+      data = json.loads(f.read())
+      for row in data:
+        costArray.append(float(row['cost_per_min']))
   
-});
-
-map.on('idle', () => {
-  map.setLayoutProperty('twelvepm0', 'visibility', 'visible');
-})
+breaks = jenkspy.jenks_breaks(costArray, n_classes=5)
+print(breaks)

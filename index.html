@@ -41,9 +41,9 @@
     </nav>
 
     <div class="container mx-auto px-4">
-      <div id='map' style="height: 85vh;"></div>
-        <p class="text-sm font-medium text-gray-900 dark:text-white"> Time of Day: <span id="time_of_day">12:00 PM</span></p>
-        <input id="slider_input" type="range" min="0" max="95" value="48" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">  
+      <div id='map' style="height: 80vh; margin: 10px"></div>
+        <p class="text-sm font-medium text-gray-900 dark:text-white" style="margin-left: 20px; margin-right: 20px"> Time of Day: <span id="time_of_day">12:00 PM</span></p>
+        <input id="slider_input" style="margin-left: 20px; margin-right: 20px" type="range" min="0" max="95" value="48" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">  
       </div>
     </div>
 
@@ -55,12 +55,13 @@
       const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/ajchu28/cld4z0xwb002f01nwyiecuxm4', // style URL
-        center: [-87.623177, 41.881832], // starting position [lng, lat]
-        zoom: 10, // starting zoom
+        center: [-87.623177, 41.86], // starting position [lng, lat]
+        zoom: 9.5, // starting zoom
       });
 
     </script>
 
     <script src="scripts/addRideShareLayers.js"></script>
+    <!-- <script src="scripts/jenkinsCalc.js"></script> -->
   </body>
 </html>
