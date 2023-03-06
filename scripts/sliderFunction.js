@@ -93,10 +93,12 @@ slider.oninput = function() {
     console.log(prevLayer);
     let currLayer = layer_mapping[this.value];
     map.setLayoutProperty(currLayer, 'visibility', 'visible');
-    map.setLayoutProperty(prevLayer, 'visibility', 'none');
     output.innerHTML = time_mapping[this.value];
+    map.setLayoutProperty(prevLayer, 'visibility', 'none');
   } else {
+    console.log("layer not changing")
     output.innerHTML = this.value;
+    prevLayer = layer_mapping[0]
   }
   prev_time = slider.value
 }

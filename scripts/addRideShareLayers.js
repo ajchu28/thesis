@@ -88,6 +88,6 @@ map.on('load', () => {
   
 });
 
-map.on('idle', () => {
-  map.setLayoutProperty('twelvepm0', 'visibility', 'visible');
-})
+// map.on('idle', () => {
+//   map.setLayoutProperty('twelvepm0', 'visibility', 'visible');
+// })
