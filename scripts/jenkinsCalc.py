@@ -1,3 +1,5 @@
+# Generates Jenkins breaks based on given json 
+
 import jenkspy
 import json
 

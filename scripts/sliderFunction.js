@@ -1,37 +1,4 @@
-// let time_mapping = {
-//   1: ["12:00 AM", "zeroam0"],
-//   2: ["12:15 AM", "zeroam15"],
-//   3: ["12:30 AM", "zeroam30"],
-//   4: ["12:45 AM", "zeroam45"],
-//   5: ["1:00 AM", "oneam0"],
-//   6: ["1:15 AM", "oneam15"],
-//   7: ["1:30 AM", "oneam30"],
-//   8: ["1:45 AM", "oneam45"],
-//   9: ["2:00 AM", "twoam0"],
-//   10: ["2:15 AM", "twoam15"],
-//   11: ["2:30 AM", "twoam30"],
-//   12: ["2:45 AM", "twoam45"],
-//   13: ["3:00 AM", "threeam0"],
-//   14: ["3:15 AM", "threeam15"],
-//   15: ["3:30 AM", "threeam30"],
-//   16: ["3:45 AM", "threeam45"],
-//   17: ["4:00 AM", "fouram0"],
-//   18: ["4:15 AM", "fouram15"],
-//   19: ["4:30 AM", "fouram30"],
-//   20: ["4:45 AM", "fouram45"],
-//   21: ["5:00 AM", "fiveam0"],
-//   22: ["5:15 AM", "fiveam15"],
-//   23: ["5:30 AM", "fiveam30"],
-//   24: ["5:45 AM", "fiveam45"],
-//   25: ["6:00 AM", "sixam0"],
-//   26: ["6:15 AM", "sixam15"],
-//   27: ["6:30 AM", "sixam30"],
-//   28: ["6:45 AM", "sixam45"],
-//   29: ["7:00 AM", "sevemam0"],
-//   30: ["7:15 AM", "sevenam15"],
-//   31: ["7:30 AM", "sevenam30"],
-//   32: ["7:45 AM", "sevenam45"],
-// }
+// Provides functionality to change layer using slider
 
 let time_mapping = {
   1: "12:00 AM", 2: "12:15 AM", 3: "12:30 AM", 4: "12:45 AM",
@@ -82,19 +49,18 @@ let layer_mapping = {
 
 var slider = document.getElementById("slider_input");
 var output = document.getElementById("time_of_day");
-output.innerHTML = slider.value; // Display the default slider value
+output.innerHTML = "12:00 PM"; // Display the default slider value
 var prev_time = slider.value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
   if (this.value in time_mapping) {
-    console.log(prev_time);
     let prevLayer = layer_mapping[prev_time];
-    console.log(prevLayer);
     let currLayer = layer_mapping[this.value];
+    console.log(currLayer)
+    map.setLayoutProperty(prevLayer, 'visibility', 'none');
     map.setLayoutProperty(currLayer, 'visibility', 'visible');
     output.innerHTML = time_mapping[this.value];
-    map.setLayoutProperty(prevLayer, 'visibility', 'none');
   } else {
     console.log("layer not changing")
     output.innerHTML = this.value;

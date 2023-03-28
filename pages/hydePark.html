@@ -39,20 +39,50 @@
         </div>
       </div>
     </nav>
+    
 
-    <div class="container mx-auto">
-      <div id='map2' style="height: 85vh;"></div>
+    <img src="/assets/HPheropink.png" style="width:100%">
+    <div style="margin-left: 15%; margin-right: 15%; margin-bottom: 4%; margin-top: 4%">
+      <p style="text-align: center; color: black; font-weight: bold; font-size: 40px">University of Chicago's LyftPass</p>
+      <p>
+        <br><br>
+        On September 28, 2021, The University of Chicago instituted its Lyft Ride Program. Through LyftPass, university 
+        students receive ten discounted rides per month, up to $15.00 per ride, as long as they originate and end within 
+        Hyde Park. The original LyftPass discount ran from 9pm-4am on Thursday, Friday, and Saturday nights. However, two
+        weeks later, the eligible hours were extended to include 5pm-4am, seven days a week.
+        <br><br>
+        Among UChicago students, there is a common consensus that Lyft rides in Hyde Park have increased in price 
+        over the past few years. The mile long ride back home from the Reg late at night used to cost no more than 
+        $7 or $8, now, people have paid as much as $25. Inspired by these observations from UChicago students, I decided 
+        to visualize the rideshare data from before and after the implementation of LyftPass. Using data from Chicago's 
+        Open Data Portal, where information on all rideshare rides are recorded, I used the metric of cost per minute 
+        (without tip) to compare the prices of rides throughout the Hyde Park area. It is worth noting that rideshares
+        by brand—whether that is Uber, Lyft or another party—are all aggregated.
+        <br><br>
+        From November 2019—when the data set begins—through November 2021, the average ride cost in Hyde Park was $1.15 
+        per minute. Looking at the data from November 2021 through the end of 2022, the average ride cost was $1.89 per 
+        minute, a 63% increase. Over the same timeframe, the average cost of a ride across the entire city increased by 
+        only 13% from $0.81 to $0.94.
+      </p>
+      <img src="/assets/yearbyyearcost.png">
+      <p>
+        Looking at this data with more granularity, the increased cost during LyftPass hours becomes even more apparent. 
+        Comparing Hyde Park ride data before and after the implementation of LyftPass, outside the hours of LyftPass 
+        operation, that is from 4:00 am to 5pm, the cost per minute of a rideshare ride increased by 39.84%. However, 
+        during the hours of operation, the cost per minute jumped by 88.67%, more than twice as much as the non-LyftPass 
+        hours. Comparing these inflated prices to the rest of the city, the highest cost per minute ride is $2.73 at 
+        11pm in Hyde Park—the second highest is $2.00 at 2am in the River North/Gold Coast area.
+      </p>
+      <img src="/assets/hourcost.png">
+      <p>
+        While this data has not been statistically analyzed and no causation may be drawn between the Lyft Ride Program 
+        and the increase in rideshare prices in Hyde Park, the data does seem to support student sentiment that the 
+        prices of Lyfts have increased during their time at the school. While students remain largely unimpacted—with 
+        the discount, a $20 Lyft is only $5—people within Hyde Park without access to LyftPass face much higher costs 
+        compared to two years ago. While it is undoubtedly nice to have access to heavily subsidized rides, the subsidies 
+        seem to have heavily impacted the rideshare economy, to the detriment of local residents of Hyde Park.
+      </p>
     </div>
 
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiYWpjaHUyOCIsImEiOiJja3o2M3MzMWswd200MnZwNGdieTNlaHRjIn0.BePZiTybP8rLoo6yQKon_w';
-
-      const map = new mapboxgl.Map({
-        container: 'map2', // container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // style URL
-        center: [-119.814972, 39.530895], // starting position [lng, lat]
-        zoom: 12, // starting zoom
-      });
-    </script>
   </body>
 </html>

@@ -17,7 +17,7 @@
   <body>
   
     <!-- Nav Menu -->
-    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+    <nav class="sticky bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/index.html" class="flex items-center">
             <img src="/assets/thesisIcon.png" class="h-6 mr-3 sm:h-9" alt="Allie MAAD thesis logo" />
@@ -40,20 +40,25 @@
       </div>
     </nav>
 
-    <div class="container mx-auto px-4">
-      <div id='map' style="height: 80vh; margin: 10px"></div>
-        <p class="text-sm font-medium text-gray-900 dark:text-white" style="margin-left: 20px; margin-right: 20px"> Time of Day: <span id="time_of_day">12:00 PM</span></p>
-        <input id="slider_input" style="margin-left: 20px; margin-right: 20px" type="range" min="0" max="95" value="48" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">  
+    <div style="width: 30%; padding: 20px; margin-left: 65%; margin-top: 3%; position: absolute; z-index: 1; background: rgba(255, 255, 255, 0.8); border-radius: 10px;">
+      <p style="font-size: medium; font-weight: regular;"> Time of Day: <span id="time_of_day">12:00 PM</span></p>
+      <input id="slider_input" style="padding: 3px" type="range" min="1" max="96" value="49" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">  
+
+      <div class="legend" style="background-color: white; height: 100px; border-radius: 5px; padding: 10px;">
+        <p style="font-size: medium; font-weight: bold; text-align: center;">Cost per Minute</p>
+        <div id="hover_cpm">
+          <p style="margin-top: 10px; text-align: center;">Hover over an area!</p>
+        </div>
       </div>
     </div>
-
+    <div id='map' style="position: absolute; height: 90%; width: 100%;"></div>
     <script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiYWpjaHUyOCIsImEiOiJja3o2M3MzMWswd200MnZwNGdieTNlaHRjIn0.BePZiTybP8rLoo6yQKon_w';
 
       const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/ajchu28/cld4z0xwb002f01nwyiecuxm4', // style URL
-        center: [-87.623177, 41.86], // starting position [lng, lat]
+        center: [-87.5, 41.86], // starting position [lng, lat]
         zoom: 9.5, // starting zoom
       });
 
@@ -61,6 +66,7 @@
 
     <script src="scripts/addRideShareLayers.js"></script>
     <script src="scripts/sliderFunction.js"></script>
+    <script src="scripts/addHover.js"></script>
     <!-- <script src="scripts/jenkinsCalc.js"></script> -->
   </body>
 </html>

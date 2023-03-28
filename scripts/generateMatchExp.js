@@ -1,3 +1,5 @@
+// Deprecated 
+
 allLayers = [
   'zeroam0.json', 'zeroam15.json', 'zeroam30.json', 'zeroam45.json',
   'oneam0.json', 'oneam15.json', 'oneam30.json', 'oneam45.json',
