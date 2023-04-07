@@ -13,11 +13,13 @@ async function getCPM(time, commNum) {
   )
   
   var running_average = 0
+  row_count = 0
   for (const row of data) {
     running_average += parseFloat(row['cost_per_min']);
+    row_count += 1
   }
 
-  average = running_average/96
+  average = running_average/row_count
 
   let cpm =  Object.values(value[0])[3]
   currCPM = cpm
@@ -67,7 +69,7 @@ map.on('mousemove', (event) => {
 
   let cpm_update = document.getElementById("hover_cpm")
   let neighborhood_update = document.getElementById("neighborhood_cpm")
-  let average_update = document.getElementById("neighborhood_cpm")
+  let average_update = document.getElementById("average_cpm")
   var time_of_day = document.getElementById("time_of_day").innerHTML;
 
   if (!map.getLayer('boundaries-community-areas')) {
@@ -86,16 +88,23 @@ map.on('mousemove', (event) => {
       // console.log(neighborhood_mapping[area_num])
       getCPM(active_layer, area_num)
       // console.log(average)
-      average_diff = Math.abs(currCPM, average)
+      // console.log(currCPM)
+      average_diff = currCPM-average
+      // console.log(currCPM, average,average_diff)
       var difference = "above"
-      if (currCPM <= average) {
+      var font_color = "red"
+      if (average_diff < 0) {
+        font_color = "green"
+        console.log("below")
         difference = "below"
+        average_diff = average_diff * -1
       }
       // console.log(average_diff)
       currCPM = (Math.round(currCPM*100))/100
       cpm_update.innerHTML = "$".concat(String(currCPM)).concat(" per minute")
       neighborhood_update.innerHTML = neighborhood_mapping[area_num]
-      average_update.innerHTML = "$".concat((Math.round(average_diff*100))/100).concat(" %d average at %s", difference, time_of_day)
+      average_diff = Math.round(average_diff*100)
+      average_update.innerHTML = String(average_diff).concat(`% <span style="font-weight: bold; color:${font_color}">${difference}</span> average at ${time_of_day}`)
       // console.log(currCPM)
       // console.log(area_num)
     }
